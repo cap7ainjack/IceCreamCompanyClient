@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Workflows</h2>
+    <table mat-table [dataSource]="workflows" class="mat-elevation-z8">
+  
+      <!-- Workflow Id Column -->
+      <ng-container matColumnDef="workflowId">
+        <mat-header-cell *matHeaderCellDef> Workflow Id </mat-header-cell>
+        <mat-cell *matCellDef="let workflow"> {{workflow.workflowId}} </mat-cell>
+      </ng-container>
+  
+      <!-- Workflow Name Column -->
+      <ng-container matColumnDef="workflowName">
+        <mat-header-cell *matHeaderCellDef> Workflow Name </mat-header-cell>
+        <mat-cell *matCellDef="let workflow"> {{workflow.workflowName}} </mat-cell>
+      </ng-container>
+  
+      <!-- Is Active Column -->
+      <ng-container matColumnDef="isActive">
+        <mat-header-cell *matHeaderCellDef> Is Active </mat-header-cell>
+        <mat-cell *matCellDef="let workflow"> {{workflow.isActive}} </mat-cell>
+      </ng-container>
+  
+      <!-- Multi Exec Behavior Column -->
+      <ng-container matColumnDef="multiExecBehavior">
+        <mat-header-cell *matHeaderCellDef> Multi Exec Behavior </mat-header-cell>
+        <mat-cell *matCellDef="let workflow"> {{workflow.multiExecBehavior}} </mat-cell>
+      </ng-container>
+  
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let workflow">
+            <button mat-flat-button color="primary" (click)="runWorkflow(workflow.workflowId)">Run</button>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Header and Row Declarations -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+  
+    <div *ngIf="message" class="alert alert-info">
+      {{ message }}
+    </div>
+  </div>
+  
